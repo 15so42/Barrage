@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Iweapon理解为武器，也可以理解为弹幕形式。一个weapon类代表一种发射方法，如散弹，圆形弹，旋涡弹。在weapon类实现弹幕。
-public abstract class IWeapon 
+public abstract class IWeapon
 {
-    public ICharacter shooter;
+    public IShootAble shooter;
     public ICharacter target;
 
     public MyTimer timer = new MyTimer();
     public float attackSpeed = 1;
 
+    public GameObject GetObj() {
+         
+            return shooter.GetObj();
+        }
+        
 
     public IWeapon()
     {
@@ -30,14 +35,14 @@ public abstract class IWeapon
         Vector3 vec;
         if (target == null)
         {
-            vec = shooter.transform.forward;
+            vec = shooter.GetObj().transform.forward;
         }
         else
         {
             vec = GetVec();
         }
         
-        GameObject bullet = BulletUtil.LoadBullet(shooter.bulletName);
+        GameObject bullet = BulletUtil.LoadBullet(shooter.GetBulletName());
         
         bullet.transform.position = shooter.GetPos();
         bullet.transform.forward = vec;
@@ -60,7 +65,7 @@ public abstract class IWeapon
     public virtual void Fire(Vector3 vec)
     {
         //从对象池里取出子弹
-        GameObject bullet = BulletUtil.LoadBullet(shooter.bulletName);
+        GameObject bullet = BulletUtil.LoadBullet(shooter.GetBulletName());
 
         //将取出的子弹的位置设置为射击者的位置
         bullet.transform.position = shooter.GetPos();
@@ -72,6 +77,8 @@ public abstract class IWeapon
         bullet.GetComponent<IBullet>().Fire();
 
     }
+
+   
 
     //获取射击者到目标的向量。
     public Vector3 GetVec()

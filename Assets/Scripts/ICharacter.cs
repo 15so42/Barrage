@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ICharacter : MonoBehaviour
+public abstract class ICharacter : MonoBehaviour,IShootAble
 {
     public string bulletName;
 
@@ -63,10 +63,10 @@ public abstract class ICharacter : MonoBehaviour
         status.CostMp(cost);
     }
 
-    
+  
 
-
-
-
-
+    public string GetBulletName()
+    {
+        return bulletName;
+    }
 }

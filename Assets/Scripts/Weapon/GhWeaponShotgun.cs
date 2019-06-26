@@ -14,7 +14,7 @@ public class GhWeaponShotgun : IWeapon
         
         for (int i = -4; i < 5; i++)
         {
-            GameObject bullet = BulletUtil.LoadBullet(shooter.bulletName);
+            GameObject bullet = BulletUtil.LoadBullet(shooter.GetBulletName());
 
             bullet.transform.position = shooter.GetPos();
             
@@ -59,7 +59,7 @@ public class GhWeaponShotgun : IWeapon
     public override void Fire(Vector3 vec)
     {
         //从对象池里取出子弹
-        GameObject bullet = BulletUtil.LoadBullet(shooter.bulletName);
+        GameObject bullet = BulletUtil.LoadBullet(shooter.GetBulletName());
 
         //将取出的子弹的位置设置为射击者的位置
         bullet.transform.position = shooter.GetPos();

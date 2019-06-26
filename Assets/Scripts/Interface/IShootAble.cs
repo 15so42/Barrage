@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IShootAble 
+public interface  IShootAble 
 {
+     GameObject  GetObj();
+    Vector3 GetPos();
+    string GetBulletName();
     
-    GameObject BulletPrefab { get; set; }
-    string BulletName { get; set; }
-    GameObject Obj { get; set; }
 }
