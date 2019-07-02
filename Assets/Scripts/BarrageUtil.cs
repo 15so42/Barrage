@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class BarrageUtil : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static T RandomFecthFromList<T>(List<T> list)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        int random = Random.Range(0, list.Count);
+        return list[random];
     }
 }

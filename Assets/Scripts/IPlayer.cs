@@ -12,8 +12,19 @@ public class IPlayer : ICharacter
         if (other.tag == "EnemyBullet")
         {
             status.GetDamage(1);
-            Debug.Log("受到攻击"+status.hp);
+            EventManager.TriggerEvent("playerBeDamaged", new ArrayList { status.hp });
+            if (status.hp <= 0)
+                Die();
+            
+            
         }
     }
 
+    public void Die()
+    {
+        EventManager.TriggerEvent("playerDied",null);
+        Debug.Log("真鸡儿菜");
+    }
+
+   
 }

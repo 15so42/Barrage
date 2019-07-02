@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class ExplosionBullet : IBullet
 {
-
+    
+    public float explosionTime = 2;
+    [Header("散弹数量")]
+    public float count = 3;
     public void OnEnable()
     {
         weapon = WeaponUtil.CreateWeapon("GhWeaponShotgun");
         weapon.shooter = this;
-        weapon.target = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        timer.Start(3);
-        bulletName = "Yk_B_CubeBullet";
+        weapon.target = GameObject.FindGameObjectWithTag("Player");
+        
+        timer.Start(explosionTime);
+        
     }
 
     // Update is called once per frame
@@ -25,7 +29,14 @@ public class ExplosionBullet : IBullet
         {
             
             weapon.Fire();
-            timer.Restart();
+            timer.Stop();
         }
+    }
+
+    public void OnBecameInvisible()
+    {
+
+        Recycle();
+
     }
 }

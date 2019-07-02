@@ -17,6 +17,11 @@ public class BulletPool : MonoBehaviour
                 GameObject obj = bullets[i];
                
                 obj.SetActive(true);
+                if (obj.GetComponent<TrailRenderer>())
+                {
+                    
+                    obj.GetComponent<TrailRenderer>().Clear();
+                }
                 bullets.RemoveAt(i);
                 return obj;
             }

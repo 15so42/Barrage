@@ -10,11 +10,21 @@ public class IBullet : MonoBehaviour,IShootAble
     public float delay = 0;
     
     public IShootAble shooter;
+    public GameObject target;
     public bool shootAble;
     public MyTimer timer=new MyTimer();
     public string bulletName;
 
 
+    public void Start()
+    {
+        Init();
+    }
+
+    public virtual void Init()
+    {
+
+    }
 
     [Header("回收的开关，如果这颗子弹是手工弹幕中的子弹且弹幕出现了异常，请不要勾选。如无异常，则说明系统自动纠错，请无视此处。")]
 
@@ -50,10 +60,14 @@ public class IBullet : MonoBehaviour,IShootAble
     public void Recycle()
     {
 
-        if (!GetObj().transform.parent&&recycleAble==true)
+        if (GetObj().transform.parent==null)
         {
-            BulletPool.Put(gameObject);
-            gameObject.SetActive(false);
+            if (recycleAble == true)
+            {
+                BulletPool.Put(gameObject);
+                gameObject.SetActive(false);
+            }
+           
         }
         
        
@@ -61,8 +75,8 @@ public class IBullet : MonoBehaviour,IShootAble
     }
     public void OnBecameInvisible()
     {
+
         
-        Recycle();
       
     }
 
@@ -79,5 +93,10 @@ public class IBullet : MonoBehaviour,IShootAble
     public string GetBulletName()
     {
         return bulletName;
+    }
+
+    public void Die()
+    {
+        Recycle();
     }
 }

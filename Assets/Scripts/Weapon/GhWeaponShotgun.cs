@@ -12,7 +12,7 @@ public class GhWeaponShotgun : IWeapon
         Vector3 vec = GetVec();
 
         
-        for (int i = -4; i < 5; i++)
+        for (int i = -1*count; i < count; i++)
         {
             GameObject bullet = BulletUtil.LoadBullet(shooter.GetBulletName());
 

@@ -8,10 +8,26 @@ public class IStatus
     public int MaxHp=3;
     public int mp=3;
     public int MaxMp=3;
+    public IShootAble master;
+    bool died;
+
+    
+
+    public IStatus()
+    {
+    }
 
     public void GetDamage(int damge)
     {
-        hp -= damge;
+        if (hp - damge <= 0)
+        {
+            hp = 0;
+            died = true;
+        }else
+        {
+            hp -= damge;
+
+        }
 
     }
 
@@ -20,4 +36,8 @@ public class IStatus
         mp -= cost;
     }
    
+    public bool isDied()
+    {
+        return died;
+    }
 }

@@ -7,7 +7,9 @@ using UnityEngine;
 public abstract class IEnemy : ICharacter
 {
 
-    public ICharacter player;
+    public static List<IEnemy> enemys=new List<IEnemy>();
+
+    public GameObject player;
     public int maxHp = 1;
 
     //不能一出现就攻击，需要等待一会
@@ -23,11 +25,11 @@ public abstract class IEnemy : ICharacter
         status.MaxHp = maxHp;
         status.hp = maxHp;
 
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player");
        
         weapon.target = player;
         waitTimer.Start(waitTime);
-        
+        enemys.Add(this);
 
 
     }
@@ -47,7 +49,24 @@ public abstract class IEnemy : ICharacter
         {
 
             status.GetDamage(1);
+            other.GetComponent<IBullet>().Recycle();
+            if (status.isDied())
+            {
+                Die();
+                
+            }
+            
         }
+    }
+
+    public void Die()
+    {
+        
+        weapon = null;
+        waitTimer = null;
+        enemys.Remove(this);
+        Destroy(gameObject);
+
     }
 
 

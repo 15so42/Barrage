@@ -7,5 +7,6 @@ public interface  IShootAble
      GameObject  GetObj();
     Vector3 GetPos();
     string GetBulletName();
+    void Die();
     
 }

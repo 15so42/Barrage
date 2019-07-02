@@ -107,5 +107,7 @@ MonoBehaviour:
   speed: 10
   delay: 0
   shootAble: 0
-  bulletName: 
+  bulletName: YK_B_CubeBullet
   recycleAble: 1
+  explosionTime: 2
+  count: 3

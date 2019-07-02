@@ -41,4 +41,11 @@ public class MyTimer
     {
         Start(duration);
     }
+
+    public void Stop()
+    {
+        state = STATE.idle;
+        elapsed = 0;
+        
+    }
 }

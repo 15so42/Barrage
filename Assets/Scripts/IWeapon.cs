@@ -6,11 +6,16 @@ using UnityEngine;
 public abstract class IWeapon
 {
     public IShootAble shooter;
-    public ICharacter target;
+    public GameObject target;
 
     public MyTimer timer = new MyTimer();
-    public float attackSpeed = 1;
+    public float attackSpeed = 0.5f;
 
+    [Header("特殊值参数")]
+    public int Integer;
+    
+
+    
     public GameObject GetObj() {
          
             return shooter.GetObj();
@@ -25,6 +30,11 @@ public abstract class IWeapon
 
     public virtual void Init()
     {
+        timer.Start(1 / attackSpeed);
+    }
+    public void SetAttackSpeed(float attackSpeed)
+    {
+        this.attackSpeed = attackSpeed;
         timer.Start(1 / attackSpeed);
     }
    
@@ -47,6 +57,8 @@ public abstract class IWeapon
         bullet.transform.position = shooter.GetPos();
         bullet.transform.forward = vec;
         bullet.GetComponent<IBullet>().shooter = shooter ;
+        if(target)
+            bullet.GetComponent<IBullet>().target = target;
         bullet.GetComponent<IBullet>().Fire();
 
     }
@@ -83,7 +95,7 @@ public abstract class IWeapon
     //获取射击者到目标的向量。
     public Vector3 GetVec()
     {
-        Vector3 vec = target.GetPos() - shooter.GetPos();
+        Vector3 vec = target.transform.position - shooter.GetPos();
         return vec;
     }
 

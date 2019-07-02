@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class YkWeaponSingle : IWeapon
+public class YKWeaponSingle : IWeapon
 {
  
 }
