@@ -20,6 +20,12 @@ public class IPlayer : ICharacter
         }
     }
 
+    private void Update()
+    {
+        weapon.Tick();
+    }
+
+
     public void Die()
     {
         EventManager.TriggerEvent("playerDied",null);

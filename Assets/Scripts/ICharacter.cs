@@ -37,7 +37,7 @@ public abstract class ICharacter : MonoBehaviour,IShootAble
     public virtual void Update()
     {
         
-        weapon.Tick();
+        
         CharacterUpdate();
 
     }

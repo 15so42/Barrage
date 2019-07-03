@@ -17,10 +17,14 @@ public abstract class IEnemy : ICharacter
 
     public MyTimer waitTimer = new MyTimer();
 
+    public IMovement movement;
+
+    bool closePlayer = false;
 
     // Start is called before the first frame update
     public override void Init()
     {
+        movement = GetComponent<IMovement>();
         base.Init();
         status.MaxHp = maxHp;
         status.hp = maxHp;
@@ -28,20 +32,35 @@ public abstract class IEnemy : ICharacter
         player = GameObject.FindGameObjectWithTag("Player");
        
         weapon.target = player;
+        
+
+
+    }
+
+    private void Update()
+    {
+        if (GetDistance() < 30&&closePlayer==false)
+        {
+            closePlayer = true;
+            ReadyAttack();
+        }
+
+        if (closePlayer)
+        {
+            weapon.Tick();
+        }
+      
+    }
+
+    public void ReadyAttack()
+    {
+        movement.CanMove();
         waitTimer.Start(waitTime);
         enemys.Add(this);
-
-
     }
 
     
 
-    
-
-    public virtual void Walk()
-    {
-
-    }
 
     public  void OnTriggerEnter(Collider other)
     {
@@ -67,6 +86,11 @@ public abstract class IEnemy : ICharacter
         enemys.Remove(this);
         Destroy(gameObject);
 
+    }
+
+    public float GetDistance()
+    {
+        return Vector3.Distance(transform.position, player.transform.position);
     }
 
 

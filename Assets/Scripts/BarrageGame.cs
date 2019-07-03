@@ -9,6 +9,7 @@ public class BarrageGame
     public StageSystem stageSystem;
     public GameObject playerObj;
     private BarrageUtil barrageUtil;
+    private BulletUtil bulletUtil;
 
     //返回BarrageUtil的mono类，当项目中存在时直接调用，不存在则新建空物体并挂载脚本，更新barrageUtil为新的BarrageUtil
     public BarrageUtil getBarrageUtil()
@@ -29,7 +30,26 @@ public class BarrageGame
     }
 
 
-    
+    //返回BulletUtil的mono类，当项目中存在时直接调用，不存在则新建空物体并挂载脚本，更新barrageUtil为新的BarrageUtil
+    public BulletUtil getBulletUtil()
+    {
+        if (bulletUtil != null)
+        {
+            return bulletUtil;
+        }
+        BulletUtil newBulletUtil = GameObject.FindObjectOfType<BulletUtil>();
+        if (newBulletUtil == null)
+        {
+            GameObject empty = new GameObject();
+            newBulletUtil = empty.AddComponent<BulletUtil>();
+
+        }
+        bulletUtil = newBulletUtil;
+        return newBulletUtil;
+    }
+
+
+
     public bool ThisGameIsOver()
     {
         return gameOver;

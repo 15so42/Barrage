@@ -23,8 +23,9 @@ public class Movement : MonoBehaviour
         bullets = BulletPool.bullets;
 
         //移动,带缓冲效果。考虑移除缓冲效果
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = (Input.GetKey(KeyCode.D) ? 1 : 0) - (Input.GetKey(KeyCode.A) ? 1 : 0);
+        float v = (Input.GetKey(KeyCode.W) ? 1 : 0) - (Input.GetKey(KeyCode.S) ? 1 : 0);
         transform.Translate(new Vector3(h, 0, v) *speed* Time.deltaTime);
+        transform.Translate(transform.forward*3 * Time.deltaTime,Space.World);
     }
 }

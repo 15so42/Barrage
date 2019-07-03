@@ -76,7 +76,7 @@ public class IBullet : MonoBehaviour,IShootAble
     public void OnBecameInvisible()
     {
 
-        
+        Recycle();
       
     }
 

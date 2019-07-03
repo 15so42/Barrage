@@ -20,5 +20,16 @@ public class BulletUtil : MonoBehaviour
 
     }
 
-  
+
+
+    public  void Recycle(IBullet bullet,float time)
+    {
+        StartCoroutine(recycleAfterTime(bullet,time));
+    }
+
+    IEnumerator recycleAfterTime(IBullet bullet,float time)
+    {
+        yield return new WaitForSeconds(time);
+        bullet.Recycle();
+    }
 }
