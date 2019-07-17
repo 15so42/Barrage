@@ -13,17 +13,20 @@ public class IBullet : MonoBehaviour,IShootAble
     public GameObject target;
     public bool shootAble;
     public MyTimer timer=new MyTimer();
-    public string bulletName;
-
+    string bulletName;
+    protected Camera camera;
+    protected float cameraMoveSpeed;
 
     public void Start()
     {
         Init();
+
     }
 
     public virtual void Init()
     {
-
+        camera = Camera.main;
+        cameraMoveSpeed = BarrageGame.Instance.GetMoveSpeed();
     }
 
     [Header("回收的开关，如果这颗子弹是手工弹幕中的子弹且弹幕出现了异常，请不要勾选。如无异常，则说明系统自动纠错，请无视此处。")]
@@ -52,18 +55,24 @@ public class IBullet : MonoBehaviour,IShootAble
     public void Update()
     {
         if(shootAble)
-        transform.Translate(Vector3.forward* speed * Time.deltaTime);
+        transform.Translate( Vector3.forward* speed * Time.deltaTime);
+        transform.Translate(new Vector3(0,0,1) * cameraMoveSpeed * Time.deltaTime, Space.World);
+        if (OutOfScreen()&&recycleAble)
+        {
+            Recycle();
+        }
     }
 
 
 
-    public void Recycle()
+    public virtual void Recycle()
     {
 
         if (GetObj().transform.parent==null)
         {
             if (recycleAble == true)
             {
+
                 BulletPool.Put(gameObject);
                 gameObject.SetActive(false);
             }
@@ -73,12 +82,17 @@ public class IBullet : MonoBehaviour,IShootAble
        
         
     }
-    public void OnBecameInvisible()
-    {
 
-        Recycle();
-      
+    public bool OutOfScreen()
+    {
+        if (Mathf.Abs(transform.position.x) > 25 || Mathf.Abs(transform.position.z - camera.transform.position.z) > 15)
+        {
+            return true;
+        }
+        return false;
     }
+   
+    
 
     public GameObject GetObj()
     {

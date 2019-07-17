@@ -23,15 +23,21 @@ public class ISceneState
 
 	// 開始
 	public virtual void StateBegin()
-	{}
+	{
+        Debug.Log(m_StateName + "begin");
+    }
 
 	// 結束
 	public virtual void StateEnd()
-	{}
+	{
+        Debug.Log(m_StateName + "end");
+    }
 
 	// 更新
 	public virtual void StateUpdate()
-	{}
+	{
+        Debug.Log(m_StateName + "update");
+    }
 
 	public override string ToString ()
 	{

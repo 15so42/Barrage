@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6587624214024567899}
   - component: {fileID: 6587624214024567896}
   - component: {fileID: 6587624214024567897}
-  - component: {fileID: 5186369210876566085}
+  - component: {fileID: 1136014692840724980}
   m_Layer: 0
   m_Name: YK_B_EnemyBullet1
   m_TagString: EnemyBullet
@@ -92,7 +92,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5186369210876566085
+--- !u!114 &1136014692840724980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,12 +101,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6587624214024567878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97b78fc088356e94d9f1f4ed7285cc5e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8cadfc6f98364894880563abebea9991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
   delay: 0
   target: {fileID: 0}
   shootAble: 0
-  bulletName: 
   recycleAble: 1

@@ -13,7 +13,7 @@ public class SceneStateController
 	// 設定狀態
 	public void SetState(ISceneState State, string LoadSceneName)
 	{
-		//Debug.Log ("SetState:"+State.ToString());
+		Debug.Log ("SetState:"+State.ToString());
 		m_bRunBegin = false;
 
 		// 載入場景

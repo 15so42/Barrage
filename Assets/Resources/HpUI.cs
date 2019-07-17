@@ -10,19 +10,23 @@ public class HpUI : MonoBehaviour
 
     private void OnEnable()
     {
-        Action<ArrayList> action = new Action<ArrayList>(LostHp);
+        Action<ArrayList> action = new Action<ArrayList>(HpChanged);
         EventManager.StartListening("playerBeDamaged", action);
 
         
     }
 
-    void LostHp(ArrayList param)
+    void HpChanged(ArrayList param)
     {
         int hp = (int)param[0];
-        Debug.Log(hp);
-        for(int i = hp; i < hearts.Length; i++)
+       
+     
+        for(int i = 0; i < hearts.Length; i++)
         {
-            hearts[i].enabled = false;
+            if (i > hp-1)
+                hearts[i].enabled = false;
+            else
+                hearts[i].enabled = true;
         }
 
     }
@@ -32,10 +36,6 @@ public class HpUI : MonoBehaviour
         EventManager.StopListening("playerBeDamaged");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 
 }

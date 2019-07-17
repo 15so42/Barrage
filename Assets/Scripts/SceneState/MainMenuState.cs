@@ -8,6 +8,7 @@ public class MainMenuState : ISceneState
 	public MainMenuState(SceneStateController Controller):base(Controller)
 	{
 		this.StateName = "MainMenuState";
+        Time.timeScale = 1;
 	}
 
 	// 開始
@@ -18,12 +19,16 @@ public class MainMenuState : ISceneState
 		if(tmpBtn!=null)
 			tmpBtn.onClick.AddListener( ()=> OnStartGameBtnClick(tmpBtn) );
 	}
-			
-	// 開始戰鬥
-	private void OnStartGameBtnClick(Button theButton)
+    public override void StateUpdate()
+    {
+        base.StateUpdate();
+    }
+
+    // 開始戰鬥
+    private void OnStartGameBtnClick(Button theButton)
 	{
 		//Debug.Log ("OnStartBtnClick:"+theButton.gameObject.name);
-		m_Controller.SetState(new BattleState(m_Controller), "BattleScene" );
+		m_Controller.SetState(new BattleState11(m_Controller), "Level1-1" );
 	}
 
 }

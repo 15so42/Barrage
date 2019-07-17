@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3437523686237959362}
   m_Layer: 0
   m_Name: "Yk_BB_\u4E09"
-  m_TagString: Untagged
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,10 +95,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   delay: 0
+  target: {fileID: 0}
   shootAble: 0
   bulletName: "Yk_BB_\u7231\u5FC3\u5F39\u5E55"
   recycleAble: 1
   explosionTime: 2
+  count: 3
 --- !u!1001 &762155971030025757
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -24,13 +24,13 @@ public class YkWeaponShotgun : IWeapon
     IEnumerator YkShotgun()
     {
         Vector3 vec = GetVec();
-        for (int i = -36; i < 36; i++)
+        for (int i = -72; i < 72; i++)
         {
             GameObject bullet = BulletUtil.LoadBullet(shooter.GetBulletName());
 
             bullet.transform.position = shooter.GetPos();
 
-            bullet.transform.forward = Quaternion.AngleAxis(20 * i, Vector3.up) * vec;
+            bullet.transform.forward = Quaternion.AngleAxis(10 * i, Vector3.up) * vec;
 
             IBullet bulletInfo = bullet.GetComponent<IBullet>();
             bulletInfo.shooter = shooter;
@@ -38,7 +38,7 @@ public class YkWeaponShotgun : IWeapon
             bulletInfo.delay = 0;
 
             bulletInfo.Fire();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
 
         }
     }

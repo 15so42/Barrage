@@ -8,6 +8,9 @@ TagManager:
   - PlayerBullet
   - EnemyBullet
   - Aid
+  - ppt
+  - hpt
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -18,9 +21,9 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
+  - Background
+  - PlayerWall
+  - EnemyWall
   - 
   - 
   - 

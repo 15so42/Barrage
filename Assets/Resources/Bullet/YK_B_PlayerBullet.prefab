@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3149316010867807402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -28.030138, y: 0, z: -1.6442311}
-  m_LocalScale: {x: 0.2005609, y: 0.2859523, z: 3.3557692}
+  m_LocalScale: {x: 0.3410883, y: 0.24355128, z: 1.4821068}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -105,10 +105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cadfc6f98364894880563abebea9991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 60
   delay: 0
+  target: {fileID: 0}
   shootAble: 0
-  bulletName: 
   recycleAble: 1
 --- !u!54 &269202145208019094
 Rigidbody:

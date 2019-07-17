@@ -5,6 +5,9 @@ using UnityEngine;
 public class Missle : IBullet
 {
     public int r;
+    public GameObject trail;
+    
+
     public override void Init()
     {
         base.Init();
@@ -13,19 +16,23 @@ public class Missle : IBullet
     }
     public void OnEnable()
     {
-        GetComponent<TrailRenderer>().Clear();
+        GameObject tmpTrail = Instantiate(trail);
+        UnityTool.Attach(gameObject, tmpTrail, Vector3.zero);
+
+        if (IEnemy.enemys.Count > 0)
+        {
+            target = BarrageUtil.RandomFecthFromList<IEnemy>(IEnemy.enemys).gameObject;
+        }
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        
         if (target == null)
         {
-            if (IEnemy.enemys.Count > 0)
-            {
-                target = BarrageUtil.RandomFecthFromList<IEnemy>(IEnemy.enemys).gameObject;
-            }
+            
             base.Update();
             return;
         }
@@ -46,4 +53,26 @@ public class Missle : IBullet
         transform.forward = vec - transform.position;
         transform.position = Vector3.MoveTowards(transform.position, vec, 0.1f);
     }
+
+
+    public override void Recycle()
+    {
+        if (transform.parent == null)
+        {
+            if (recycleAble == true)
+            {
+                Transform trail = transform.GetChild(0);
+                trail.SetParent(null);
+                Destroy(trail.gameObject, 3);
+                BulletPool.Put(gameObject);
+                gameObject.SetActive(false);
+            }
+
+        }
+    }
+
+   
+ 
+
+
 }
